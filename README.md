@@ -1,0 +1,2 @@
+# arilib
+library for C
