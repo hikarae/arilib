@@ -120,4 +120,5 @@ void clearinputbuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
+
 #endif // STRING_H
