@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <ctype.h>
 
 typedef char* string; // define string as a pointer to char
 
@@ -14,7 +15,7 @@ typedef char* string; // define string as a pointer to char
 void rscanf (string* out) {
     size_t capacity;
     size_t index;
-    char* str;
+    string str;
     
     if(*out == NULL) { // if the input string is NULL, initialize it
         capacity = 16; // initial capacity
@@ -81,7 +82,7 @@ char* reverse_string(const string* input, int func){
             printf("Memory allocation failed\n");
             return NULL; // handle malloc failure
         }
-        for(size_t i = 0; i < len; i++){
+        for(size_t i = 0; i < len / 2; i++){
             reversed[i] = (*input)[len - i - 1];
         }
         reversed[len] = '\0'; // null-terminate the new string
@@ -90,4 +91,33 @@ char* reverse_string(const string* input, int func){
 
 }
 
+// Function to convert a string to uppercase
+void upcase(string* input){
+    if (input == NULL || *input == NULL) {
+        printf("Input string is NULL\n");
+        return; // handle NULL input
+    }
+    size_t len = strlen(*input);
+    for(size_t i = 0; i < len; i++){
+        (*input)[i] = toupper((*input)[i]);
+    }
+}
+
+// Function to convert a string to lowercase
+void lowcase(string* input){
+    if (input == NULL || *input == NULL) {
+        printf("Input string is NULL\n");
+        return; // handle NULL input
+    }
+    size_t len = strlen(*input);
+    for(size_t i = 0; i < len; i++){
+        (*input)[i] = tolower((*input)[i]);
+    }
+}
+
+// Function to clear the input buffer
+void clearinputbuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
 #endif // STRING_H
